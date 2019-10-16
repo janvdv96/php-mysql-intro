@@ -18,14 +18,6 @@ $dataAll = select(openConnection(), 'SELECT * FROM students');
 </head>
 <body>
 
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<script>';
-    echo 'alert("No profiles match that ID")';
-    echo '</script>';
-}
-?>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.php">Becode Students</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -89,3 +81,5 @@ if (isset($_SESSION['error'])) {
 
 <?php
 var_dump($_SESSION);
+echo '<hr>';
+var_dump($_COOKIE);

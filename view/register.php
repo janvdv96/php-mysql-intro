@@ -32,7 +32,7 @@ if (!empty($_POST)) {
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="index.php">Full List <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link active" href="insert.php">Add a student</a>
+            <a class="nav-item nav-link active" href="register.php">Add a student</a>
         </div>
     </div>
 </nav>

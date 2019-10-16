@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require '../controller/connection.php';
 try {
-    $profileData = select(openConnection(), 'SELECT * FROM students WHERE id=' . $_GET['profile']);
+    $profileData = selectWhere(openConnection(), 'SELECT * FROM students WHERE id=:id', 'id', $_GET['profile']);
 } catch (Exception $e) {
     die ($e);
 }
@@ -42,7 +42,7 @@ if (empty($profileData)) {
         <div class="navbar-nav">
             <a class="nav-item nav-link active" href="index.php">Full List <span
                         class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="insert.php">Add a student</a>
+            <a class="nav-item nav-link" href="register.php">Add a student</a>
         </div>
     </div>
 </nav>

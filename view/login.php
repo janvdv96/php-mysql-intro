@@ -1,8 +1,8 @@
 <?php
 require '../controller/connection.php';
-if ($_SESSION['logged_in']){
-    header('location: ../view/index.php');
-}
+//if ($_SESSION['logged_in']){
+//    header('location: ../view/index.php');
+//}
 ?>
 
 <!doctype html>
