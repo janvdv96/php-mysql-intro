@@ -4,6 +4,35 @@
     width: 250px;
 }
 
+.container{
+    background-color: lightgray;
+    width: 55%;
+}
+
 .thickBorder{
     border: 3px solid black;
+}
+
+.nameText{
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.logo{
+    height: 48px;
+    width: 48px;
+    display: block;
+    margin: auto;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.grow:hover {
+    transform: scale(1.1);
+}
+
+.quoteText{
+    font-style: italic;
 }

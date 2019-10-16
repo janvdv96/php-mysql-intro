@@ -4,30 +4,39 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+session_start();
+
 function openConnection()
 {
-    // Try to figure out what these should be for you
     $dbhost = 'localhost';
     $dbuser = 'root';
     $dbpass = 'janvdv';
     $db = 'becode';
 
-// Try to understand what happens here
-    $pdo = new PDO('mysql:host='. $dbhost .';dbname='. $db, $dbuser, $dbpass); // DSN specifying the database source, username and password is optional
+    $pdo = new PDO('mysql:host=' . $dbhost . ';dbname=' . $db, $dbuser, $dbpass); // DSN specifying the database source, username and password is optional
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-// Why we do this here
+
     return $pdo;
 }
 
 function select(PDO $pdo, string $query): array
 {
+    //select rows from the db based on a given query
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function insertNewStudent(PDO $pdo, $data) : void
+function selectWHere(PDO $pdo, string $query, string $column, string $value): array
+{
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':' . $column, $value);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function insertNewStudent(PDO $pdo, $data): void
 {
     $sql = 'INSERT INTO students (first_name, last_name, username, linkedin, github, email, preferred_language, avatar, video, quote, quote_author) VALUES (:first_name, :last_name, :username, :linkedin, :github, :email, :preferred_language, :avatar, :video, :quote, :quote_author)';
     $stmt = $pdo->prepare($sql);
@@ -62,4 +71,12 @@ function insertNewStudent(PDO $pdo, $data) : void
 function update()
 {
     // update a value on a row
+}
+
+function deleteRow(PDO $pdo, $id)
+{
+    // delete an entire row based on ID?
+    $stmt = $pdo->prepare('DELETE FROM students WHERE id=:id');
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
 }
