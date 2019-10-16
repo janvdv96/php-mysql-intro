@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 require '../controller/connection.php';
+
+if (isset($_SESSION['error'])){
+
+}
+
+$dataAll = select(openConnection(), 'SELECT * FROM students');
 ?>
 
 <!doctype html>
@@ -63,6 +69,7 @@ require '../controller/connection.php';
                 echo '<td>' . $data['quote'];
                 echo '<td>' . $data['quote_author'];
                 echo '<td>' . $data['created_at'];
+                echo '<td><a href="profile.php?profile='.$data['id'].'"> ' . 'Profile' . '</a>';
                 echo '</tr>';
             }
         } else {

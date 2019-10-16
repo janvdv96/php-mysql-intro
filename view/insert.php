@@ -1,6 +1,12 @@
 <?php
 declare(strict_types=1);
 require '../controller/connection.php';
+
+if (!empty($_POST)) {
+    insertNewStudent(openConnection(), $_POST);
+    header('location: index.php');
+}
+
 ?>
 
 <!doctype html>

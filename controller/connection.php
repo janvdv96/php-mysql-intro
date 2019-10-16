@@ -22,11 +22,12 @@ function openConnection()
 
 function select(PDO $pdo, string $query): array
 {
-    $sql = $pdo->query($query);
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function insertNewStudent(PDO $pdo, $data)
+function insertNewStudent(PDO $pdo, $data) : void
 {
     $sql = 'INSERT INTO students (first_name, last_name, username, linkedin, github, email, preferred_language, avatar, video, quote, quote_author) VALUES (:first_name, :last_name, :username, :linkedin, :github, :email, :preferred_language, :avatar, :video, :quote, :quote_author)';
     $stmt = $pdo->prepare($sql);
@@ -62,9 +63,3 @@ function update()
 {
     // update a value on a row
 }
-
-if (!empty($_POST)) {
-    insertNewStudent(openConnection(), $_POST);
-}
-
-$dataAll = select(openConnection(), 'SELECT * FROM students');
